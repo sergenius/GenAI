@@ -80,3 +80,22 @@ border-bottom: solid 1px #ddd;
 }
 .chat-index h2, .chat-index p{ margin-bottom: 0.5rem;}
 .chat-index ul li{padding: 0.5rem 0;}
+
+.recipeGenerator-search{
+    background: #fff;
+    border-radius: 4px;
+    padding: 1rem;
+    width: 100%;
+}
+.recipe-page{
+    gap: 0.5rem;
+    overflow: hidden;
+}
+.recipe-page .amplify-scrollview{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.recipe-page h2{
+    font-size:1.5rem;
+font-weight: bold;
+}
