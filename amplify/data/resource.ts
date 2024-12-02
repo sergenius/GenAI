@@ -2,50 +2,28 @@ import {
   type ClientSchema,
   a,
   defineData,
-  defineFunction,
-  secret,
 } from "@aws-amplify/backend";
-// import { customConversationHandlerFunction } from "../functions/conversation-handler/resource";
-
-export const getWeather = defineFunction({
-  name: "getWeather",
-  entry: "./getWeather.ts",
-  environment: {
-    WEATHERSTACK_API_KEY: secret("WEATHERSTACK_API_KEY"),
-  },
-});
 
 const schema = a.schema({
-  Temperature: a.customType({
-    value: a.integer(),
-    unit: a.string(),
-  }),
-
-  getWeather: a
-    .query()
-    .arguments({ city: a.string() })
-    .returns(a.ref("Temperature"))
-    .authorization((allow) => allow.authenticated())
-    .handler(a.handler.function(getWeather)),
-
+  // Chat route for handling AI conversations
   chat: a.conversation({
-    aiModel: a.ai.model("Claude 3.5 Sonnet"),
+    aiModel: a.ai.model("Claude 3 Haiku"),
     systemPrompt: `
-    You are a helpful assistant.
+    You are a helpful assistant for food-related queries. 
+    You can:
+    - Provide a list of meal names if asked for meals (#list of meals).
+    - Provide detailed recipes with ingredients and step-by-step instructions if asked for a specific meal.
+    - Calculate and list total ingredient quantities across multiple recipes.
+    - Suggest nearby supermarkets based on the user’s city if asked where to find ingredients. 
+    Always clarify the user's intent before responding.
     `,
-    tools: [
-      {
-        query: a.ref("getWeather"),
-        description: "Provides the current weather for a given city.",
-      },
-    ],
   }),
 
-  chatNamer: a
-    .generation({
-      aiModel: a.ai.model("Claude 3 Haiku"),
-      systemPrompt: `You are a helpful assistant that writes descriptive names for conversations. Names should be 2-10 words long`,
-    })
+  // Route for generating descriptive chat names
+  chatNamer: a.generation({
+    aiModel: a.ai.model("Claude 3 Haiku"),
+    systemPrompt: `You are a helpful assistant that writes descriptive names for conversations. Names should be 2-10 words long.`,
+  })
     .arguments({
       content: a.string(),
     })
@@ -56,11 +34,11 @@ const schema = a.schema({
     )
     .authorization((allow) => [allow.authenticated()]),
 
-  generateRecipe: a
-    .generation({
-      aiModel: a.ai.model("Claude 3 Haiku"),
-      systemPrompt: "You are a helpful assistant that generates recipes.",
-    })
+  // Route for generating recipes
+  generateRecipe: a.generation({
+    aiModel: a.ai.model("Claude 3 Haiku"),
+    systemPrompt: "You are a helpful assistant that generates recipes.",
+  })
     .arguments({
       description: a.string(),
     })
@@ -80,7 +58,6 @@ export const data = defineData({
   schema,
   authorizationModes: {
     defaultAuthorizationMode: "userPool",
-    // API Key is used for a.allow.public() rules
     apiKeyAuthorizationMode: {
       expiresInDays: 30,
     },

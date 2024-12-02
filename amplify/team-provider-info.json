@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-genai-dev-09610-authRole",
+      "UnauthRoleArn": "arn:aws:iam::820242916931:role/amplify-genai-dev-09610-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::820242916931:role/amplify-genai-dev-09610-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-genai-dev-09610-deployment",
+      "UnauthRoleName": "amplify-genai-dev-09610-unauthRole",
+      "StackName": "amplify-genai-dev-09610",
+      "StackId": "arn:aws:cloudformation:us-east-1:820242916931:stack/amplify-genai-dev-09610/1e8d69e0-a375-11ef-bb36-12471d93cc5d",
+      "AmplifyAppId": "d1imzh7fgn8xa6"
+    }
+  }
+}
