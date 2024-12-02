@@ -43,7 +43,7 @@ export const ThemeProvider = ({ children }: React.PropsWithChildren) => {
     <ThemeContext.Provider value={{ colorMode, setColorMode }}>
       <View
         {...theme.containerProps({ colorMode })}
-        backgroundColor="background.primary"
+        // backgroundColor="background.primary"
         color="text.primary"
         height="100vh"
         width="100vw"

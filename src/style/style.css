@@ -1,0 +1,101 @@
+body{
+    background: #f3f4f7;
+}
+.header{background: #fff; border-bottom: solid 1px #ddd;
+    justify-content: space-between;
+    height: 3.5rem;
+}
+.header .logo{
+width: 110px;
+}
+.main-body{
+    width: 100%;
+}
+.main-container{
+    overflow-x: hidden;
+}
+.header .amplify-nav-link{
+    align-items: center;
+    font-weight: 500;
+    border-bottom: solid 2px transparent;
+}
+.header .amplify-nav-link:hover, .header .amplify-nav-link--active{
+    color: #0d4c8f !important;
+    background: transparent !important;
+    border-bottom: solid 2px #0d4c8f;
+}
+
+.sidebar{
+background: #fff;
+padding: 1rem;
+border-right: solid 1px #ddd;
+height: calc(100vh - 56px);
+width: 300px;
+min-width: 300px;
+}
+.sidebar .nav-separator{
+border-bottom: solid 1px #ddd;
+}
+.nav-separator .amplify-flex{
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.nav-separator{
+    font-size: 14px;
+}
+.nav-separator .amplify-button{
+    width: 40px;
+    height: 40px;
+}
+.amplify-ai-conversation{
+    height: calc(100vh - 56px);
+}
+
+.amplify-ai-conversation__message--user{
+    flex-direction: row-reverse;
+}
+.amplify-ai-conversation__message__body{
+    background: #fff;
+    border: solid 1px #ddd;
+    padding: 0.25rem 1rem;
+    border-radius: 8px;
+}
+.amplify-ai-conversation__message__sender__timestamp{font-size: 14px;}
+.amplify-avatar{
+    background: #6E8E3B;
+    color: #fff;
+    font-size: 24px;
+}
+.amplify-ai-conversation__message--assistant .amplify-ai-conversation__message__body{
+    background: #f7fcff;
+    border: solid 1px #cce1ef;
+}
+.amplify-ai-conversation__message--assistant .amplify-avatar{background: #0D4C8F;}
+.create-chat-container button{
+    width: 100%;
+}
+
+.chat-index{
+    padding: 1rem;
+}
+.chat-index h2, .chat-index p{ margin-bottom: 0.5rem;}
+.chat-index ul li{padding: 0.5rem 0;}
+
+.recipeGenerator-search{
+    background: #fff;
+    border-radius: 4px;
+    padding: 1rem;
+    width: 100%;
+}
+.recipe-page{
+    gap: 0.5rem;
+    overflow: hidden;
+}
+.recipe-page .amplify-scrollview{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.recipe-page h2{
+    font-size:1.5rem;
+font-weight: bold;
+}

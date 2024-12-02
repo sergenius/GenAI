@@ -7,16 +7,16 @@ import {
   ConversationsProvider,
 } from "../components/ConversationsProvider";
 
-export const Sidebar = () => {
+export const Header = () => {
   const { conversations, deleteConversation } =
     React.useContext(ConversationsContext);
 
   return (
-    <Flex direction="column" width="500px" height="100%">
+    <Flex direction="column" className="sidebar">
       <ScrollView flex="1">
         <Flex direction="column">
           {conversations.map((conversation) => (
-            <Flex direction="row" key={conversation.id} alignItems="center">
+            <Flex direction="row" key={conversation.id} alignItems="center" className="nav-separator">
               <Flex direction="column" flex="1">
                 <Link to={`/chat/${conversation.id}`}>
                   {conversation.name ?? conversation.id}
@@ -41,7 +41,7 @@ export const Sidebar = () => {
           ))}
         </Flex>
       </ScrollView>
-      <Flex direction="row" padding="large">
+      <Flex direction="row" className="create-chat-container">
         <CreateChat />
       </Flex>
     </Flex>
@@ -51,9 +51,9 @@ export const Sidebar = () => {
 export const Chat = () => {
   return (
     <ConversationsProvider>
-      <Flex direction="row" flex="1" padding="large">
-        <Sidebar />
-        <View flex="1">
+      <Flex direction="row" flex="1" className="main-container">
+        <Header />
+        <View className="main-body">
           <Outlet />
         </View>
       </Flex>

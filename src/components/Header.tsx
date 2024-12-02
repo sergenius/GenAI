@@ -1,12 +1,13 @@
-import * as React from "react";
-import { Link, NavLink } from "react-router-dom";
+// import * as React from "react";
+import { NavLink } from "react-router-dom";
 import { Button, Flex } from "@aws-amplify/ui-react";
-import { ThemeContext } from "./ThemeProvider";
-import { LuMoon, LuSun } from "react-icons/lu";
+// import { ThemeContext } from "./ThemeProvider";
+// import { LuMoon, LuSun } from "react-icons/lu";
 import { signOut } from "aws-amplify/auth";
-import { Logo } from "./Logo";
-import { defineComponentTheme } from "@aws-amplify/ui-react/server";
+// import { Logo } from "./Logo";
+import mainLogo from'../../public/datavail-logo.svg';
 
+import { defineComponentTheme } from "@aws-amplify/ui-react/server";
 export const navLinkTheme = defineComponentTheme({
   name: "nav-link",
   theme(tokens) {
@@ -30,31 +31,29 @@ export const navLinkTheme = defineComponentTheme({
   },
 });
 
-export const Sidebar = () => {
-  const { colorMode, setColorMode } = React.useContext(ThemeContext);
+export const Header = () => {
+  // const { colorMode, setColorMode } = React.useContext(ThemeContext);
 
   return (
     <Flex
-      direction="column"
-      width="20rem"
-      padding="medium"
-      backgroundColor="background.secondary"
+      direction="row"
+      width="100vw"
+      padding="small"
+      // backgroundColor="background.secondary"
+     className="header"
+      
     >
       <Flex direction="row" gap="small" color="font.primary">
-        <Logo width="2rem" height="2rem" />
-        <Button
+        <img  src={mainLogo} alt="fireSpot" className="logo"/>
+        {/* <Logo width="2rem" height="2rem" /> */}
+        {/* <Button
           onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
         >
           {colorMode === "light" ? <LuMoon /> : <LuSun />}
-        </Button>
-        <Button
-          onClick={() => {
-            signOut();
-          }}
-        >
-          Log out
-        </Button>
+        </Button> */}
+        
       </Flex>
+      <Flex direction="row">
       <NavLink
         className={({ isActive }) =>
           navLinkTheme.className({ _modifiers: { active: isActive } })
@@ -71,9 +70,17 @@ export const Sidebar = () => {
       >
         Recipe generator
       </NavLink>
-      <Link to="story-generator" state={{ story: "cats", title: "aristocats" }}>
+      {/* <Link to="story-generator" state={{ story: "cats", title: "aristocats" }}>
         Test
-      </Link>
+      </Link> */}
+      </Flex>
+      <Button
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Log out
+        </Button>
     </Flex>
   );
 };

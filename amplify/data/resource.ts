@@ -9,14 +9,14 @@ const schema = a.schema({
   chat: a.conversation({
     aiModel: a.ai.model("Claude 3 Haiku"),
     systemPrompt: `
-    You are a helpful assistant for food-related queries. 
-    You can:
-    - Provide a list of meal names if asked for meals (#list of meals).
-    - Provide detailed recipes with ingredients and step-by-step instructions if asked for a specific meal.
-    - Calculate and list total ingredient quantities across multiple recipes.
-    - Suggest nearby supermarkets based on the user’s city if asked where to find ingredients. 
-    Always clarify the user's intent before responding.
+    You are a helpful assistant.
     `,
+    tools: [
+      {
+        query: a.ref("getWeather"),
+        description: "Provides the current weather for a given city.",
+      },
+    ],
   }),
 
   // Route for generating descriptive chat names
@@ -34,11 +34,11 @@ const schema = a.schema({
     )
     .authorization((allow) => [allow.authenticated()]),
 
-  // Route for generating recipes
-  generateRecipe: a.generation({
-    aiModel: a.ai.model("Claude 3 Haiku"),
-    systemPrompt: "You are a helpful assistant that generates recipes.",
-  })
+  generateRecipe: a
+    .generation({
+      aiModel: a.ai.model("Claude 3 Haiku"),
+      systemPrompt: "You are a helpful assistant that generates recipes.",
+    })
     .arguments({
       description: a.string(),
     })

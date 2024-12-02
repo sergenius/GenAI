@@ -1,14 +1,20 @@
-# Amplify AI Starter
+# Datavail Meal Planner Bot
 
-Please refer to the [Request For Comments (RFC)](https://github.com/aws-amplify/amplify-ui/issues/5773) for more information and feedback.
+Datavail Meal Planner Bot is a serverless, AI-powered web application that provides users with two core functionalities: a **chat interface** for conversational AI interactions and a **meal generation tool** for creating personalized recipes. The app leverages AWS Amplify for backend management, Amazon S3 for static hosting, Amazon CloudFront for content delivery, Amazon API Gateway and AWS Lambda for backend logic, Amazon DynamoDB for storing chat history, and Amazon Bedrock for AI-powered interactions. With this robust architecture, the app delivers scalable, secure, and efficient services to users.
 
-This project uses Amplify Gen2 and the new AI functionality along with Vite + React for the frontend.
+## Key Features
+1. **Chat Route**: Engage in intelligent, conversational interactions powered by AI to answer queries or provide contextual support.
+2. **Meal Generation Route**: Generate personalized meal recipes, complete with ingredient quantities and detailed instructions, based on user input.
+
+## Architecture Overview
+The architecture is built on AWS services, ensuring a fully serverless and scalable deployment. The frontend is hosted on **Amazon S3**, distributed globally via **Amazon CloudFront**. Backend operations are handled by **API Gateway** and **AWS Lambda**. AI capabilities are integrated through **Amazon Bedrock** using Claude V3 models for conversation and recipe generation. Chat memory is stored securely in **Amazon DynamoDB**, ensuring context continuity across sessions. User authentication and app management are streamlined using **AWS Amplify**.
+
+![Architecture Diagram](./architecture-diagram.png)
 
 ## Setup
 
-First, make sure your AWS account has access to the model you wish to use. You can do that by going in to the [Bedrock console and requesting access](https://console.aws.amazon.com/bedrock/home#/modelaccess).
-
-Also, make sure your account is set up for Amplify: https://docs.amplify.aws/react/start/account-setup/
+1. Ensure your AWS account has access to Bedrock by requesting access in the [Bedrock console](https://console.aws.amazon.com/bedrock/home#/modelaccess).
+2. Set up your AWS account for Amplify following this [guide](https://docs.amplify.aws/react/start/account-setup/).
 
 ## Installation
 
@@ -18,41 +24,28 @@ To get started, install the dependencies:
 npm i
 ```
 
-## Running the app
+## Running the App
 
-Start up the Amplify cloud sandbox:
+1. Start the Amplify cloud sandbox:
+   ```bash
+   npx ampx sandbox
+   ```
+   This will provision resources in your AWS account. Watch for file changes to auto-deploy backend updates.
 
-```bash
-npx ampx sandbox
-```
+2. Run the Vite development server in a separate terminal:
+   ```bash
+   npm run dev
+   ```
+   Log in or create an account on the provided sign-in page.
 
-This will create a cloud sandbox in your AWS account to provision resources while you are developing. The first run will take a bit of time to get everything set up, but after that making changes only takes a few seconds.
+## Deploying the App
 
-The sandbox command will watch for file changes in the amplify/ directory so when you make changes to your backend configuration they will deploy automatically to your cloud sandbox.
+1. In the Amplify console, create a new app and connect your Git repository.
+2. Configure the settings and deploy. You will get a live URL for your app after deployment.
 
-There should be an **amplify_outputs.json** file in the root of your project now. This has the information your frontend code needs to talk to your backend. **Don't check in this file!**
+## Cleaning Up Resources
 
-In a separate terminal window, run the Vite dev server:
+- For sandbox resources, quit the sandbox and type `y` to clean up.
+- For deployed apps, delete the app in the Amplify console to remove resources.
 
-```
-npm run dev
-```
-
-You should see a log in/sign up screen. Create an account that you can use to log into your application.
-
-Note: because this is running in a cloud sandbox, the accounts created here are specific to the sandbox.
-
-## Deploying the app
-
-1. Go to the Amplify console and create a new app.
-2. Select Github (or your preferred git provider) and click next.
-3. Select your git repository and click next
-4. All the settings should be filled out for you already, then click next.
-5. Finally, review the app information and click 'save and deploy'.
-6. Once the deploy is finished you should have a URL you can go to view your app. _Note: the AWS resources used for app are different than the sandbox resources. If you create a user in one, it won't show up in the other._
-
-## Cleaning up resources
-
-If you just use the sandbox, when you quit the sandbox process the CLI will ask if you want to destroy the cloud resources. Type `y` to clean up the cloud resources.
-
-If you deployed the app to Amplify, you can delete the app in the Amplify console.
+---

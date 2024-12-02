@@ -5,7 +5,7 @@ import { Amplify } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles/reset.css";
 import "@aws-amplify/ui-react/styles.css";
-
+import "./style/style.css";
 import awsconfig from "../amplify_outputs.json";
 
 import { ThemeProvider } from "./components/ThemeProvider.tsx";
