@@ -50,6 +50,18 @@ const schema = a.schema({
       })
     )
     .authorization((allow) => allow.authenticated()),
+
+  query: {
+    getWeather: a.query({
+      arguments: {
+        city: a.string(),
+      },
+      returns: a.customType({
+        temperature: a.float(),
+        description: a.string(),
+      }),
+    }),
+  },
 });
 
 export type Schema = ClientSchema<typeof schema>;
